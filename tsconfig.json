@@ -12,7 +12,8 @@
     "noUncheckedIndexedAccess": true,
     "moduleDetection": "force",
     "isolatedModules": true,
-    "types": ["node"]
+    "types": ["node"],
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

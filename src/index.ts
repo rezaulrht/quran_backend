@@ -1,19 +1,22 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import { quranRouter } from './routes/quran'
 
-dotenv.config();
+dotenv.config()
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const app = express()
+const PORT = process.env['PORT'] ?? 5000
 
-app.use(cors({ origin: "http://localhost:3000" }));
-app.use(express.json());
+app.use(cors({ origin: process.env['CORS_ORIGIN'] ?? 'http://localhost:3000' }))
+app.use(express.json())
 
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", message: "Quran API running" });
-});
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', message: 'Quran API running' })
+})
+
+app.use('/api', quranRouter)
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+  console.log(`Server running on http://localhost:${PORT}`)
+})
